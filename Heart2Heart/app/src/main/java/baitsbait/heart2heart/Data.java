@@ -5,18 +5,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
 
 public class Data extends AppCompatActivity {
-
+    ListView data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_data);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    setSupportActionBar(toolbar);
 
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +28,11 @@ public class Data extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        String[] displays = {"Heart Rate: ", "Blood Rate: "};
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.activity_list,displays);
+        data = (ListView)findViewById(R.id.data);
+        data.setAdapter(adapter);
+
     }
 
     @Override

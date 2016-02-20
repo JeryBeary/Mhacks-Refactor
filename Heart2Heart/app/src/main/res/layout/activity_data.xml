@@ -9,33 +9,40 @@
     tools:context="baitsbait.heart2heart.Data">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
         android:text="Dataasdsad"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
+            android:title="Data"
+            android:textColor="#ffffff"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80px"
-            android:layout_centerVertical="true"
-            android:text="Toolbar Title"
-            android:textColor="#ffffff"
-            android:fontFamily="helvetica"
-            android:textSize="100px"
-            android:id="@+id/toolbar_title" />
+
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_data"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="180px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
+        <ListView
+            android:id="@+id/data"
+            android:layout_height="wrap_content"
+
+            android:layout_width="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
