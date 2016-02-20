@@ -8,11 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 
 public class Data extends AppCompatActivity {
-    ListView data;
+    //ListView data;
+    CheckBox heart, sleep;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -28,13 +31,31 @@ public class Data extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        String[] displays = {"Heart Rate: ", "Blood Rate: "};
+        String[] displays = {"Heart Rate: ", "Sleep Hours: "};
         ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.activity_list,displays);
-        data = (ListView)findViewById(R.id.data);
-        data.setAdapter(adapter);
+        heart = (CheckBox)findViewById(R.id.heart);
+        //heart.setAdapter(adapter);
+        sleep = (CheckBox)findViewById(R.id.sleep);
+        //sleep.setAdapter(adapter);
 
     }
 
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.heart:
+                if (checked)
+                // Put some meat on the sandwich
+                break;
+            case R.id.sleep:
+                if (checked)
+                // Cheese me
+                break;
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

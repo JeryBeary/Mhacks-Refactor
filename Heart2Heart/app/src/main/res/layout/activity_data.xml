@@ -34,13 +34,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <ListView
+        <!--<ListView
             android:id="@+id/data"
             android:layout_height="wrap_content"
-
             android:layout_width="match_parent">
+        </ListView>!-->
 
-        </ListView>
+        <CheckBox android:id="@+id/heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:text="Heart Rate"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/sleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:text="Sleep Hours"
+            android:onClick="onCheckboxClicked"/>
+
+        <EditText android:id="@+id/edit_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:singleLine="true"
+            android:hint="@string/edit_message" />
+
+        <!--<Button android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send" />!-->
 
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
@@ -49,6 +73,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>
