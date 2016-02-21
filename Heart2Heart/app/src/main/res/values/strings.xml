@@ -7,4 +7,5 @@
     <string name="button_heart">Heart Rate</string>
     <string name="button_sleep">Sleep Hours</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_contact">Contacts</string>
 </resources>

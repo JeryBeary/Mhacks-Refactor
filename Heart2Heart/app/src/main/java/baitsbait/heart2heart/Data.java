@@ -43,20 +43,7 @@ public class Data extends AppCompatActivity {
         sleep = (CheckBox)findViewById(R.id.sleep);
         //sleep.setAdapter(adapter);
 
-        ArrayList<PhoneContact> contacts = new ArrayList<PhoneContact>();
-        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
-        while (phones.moveToNext())
-        {
-            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            contacts.add(new PhoneContact(name, phoneNumber));
-        }
 
-        for(int i = 0; i < contacts.size(); i++)
-        {
-            Log.d("hi", contacts.get(i).getName() + " " + contacts.get(i).getNumber());
-        }
-        phones.close();
 
     }
 
