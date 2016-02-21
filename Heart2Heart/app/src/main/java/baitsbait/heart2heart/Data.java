@@ -12,14 +12,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
+import android.content.Intent;
 
 public class Data extends AppCompatActivity {
     //ListView data;
     CheckBox heart, sleep;
+    public class MyActivity extends AppCompatActivity {
+        public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, ContactActivity.class);
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +54,7 @@ public class Data extends AppCompatActivity {
         //heart.setAdapter(adapter);
         sleep = (CheckBox)findViewById(R.id.sleep);
         //sleep.setAdapter(adapter);
+
 
         ArrayList<PhoneContact> contacts = new ArrayList<PhoneContact>();
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
