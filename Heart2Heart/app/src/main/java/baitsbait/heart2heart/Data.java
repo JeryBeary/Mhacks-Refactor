@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,16 +22,17 @@ import android.content.Intent;
 public class Data extends AppCompatActivity {
     //ListView data;
     CheckBox heart, sleep;
+    Button button;
     public class MyActivity extends AppCompatActivity {
         public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     }
 
     public void sendMessage(View view) {
         Intent intent = new Intent(this, ContactActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        //EditText editText = (EditText) findViewById(R.id.edit_message);
+        //String message = editText.getText().toString();
+        //intent.putExtra("yolo", message);
+        startActivityForResult(intent, 0);
     }
 
     @Override
@@ -39,15 +41,21 @@ public class Data extends AppCompatActivity {
     setContentView(R.layout.activity_data);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v){
+               sendMessage(v);
+                                      }}
+        );
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /** FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });**/
         String[] displays = {"Heart Rate: ", "Sleep Hours: "};
         ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.activity_list,displays);
         heart = (CheckBox)findViewById(R.id.heart);
@@ -65,11 +73,7 @@ public class Data extends AppCompatActivity {
             contacts.add(new PhoneContact(name, phoneNumber));
         }
 
-        for(int i = 0; i < contacts.size(); i++)
-        {
-            Log.d("hi", contacts.get(i).getName() + " " + contacts.get(i).getNumber());
-        }
-        phones.close();
+
 
     }
 
