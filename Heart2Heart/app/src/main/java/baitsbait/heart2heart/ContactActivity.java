@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +20,10 @@ import java.util.ArrayList;
 
 public class ContactActivity extends AppCompatActivity {
 
+    ListView people;
     TextView label;
     CheckBox phoneCheck;
-    String[] contactNames;
+    String[] contactNames, contactNumbers;
     Context context;
     private static LayoutInflater inflater = null;
 
@@ -29,6 +31,7 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        people=(ListView) findViewById(R.id.listView);
         ArrayList<PhoneContact> contacts = new ArrayList<PhoneContact>();
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
         while (phones.moveToNext())
@@ -37,8 +40,19 @@ public class ContactActivity extends AppCompatActivity {
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             contacts.add(new PhoneContact(name, phoneNumber));
         }
-        contactNames = contacts.toArray(new String[contacts.size()]);
+        ArrayList<String> names = new ArrayList<String>();
+        for(int x = 0; x< contacts.size(); x++) {
+            names.add(contacts.get(x).getName());
+        }
+        ArrayList<String> numbers = new ArrayList<String>();
+        for(int x = 0; x< contacts.size(); x++)
+        {
+            numbers.add(contacts.get(x).getNumber());
+        }
 
+        contactNames = names.toArray(new String[names.size()]);
+        contactNumbers = numbers.toArray(new String[names.size()]);
+        people.setAdapter(new CustomAdapter(this, contactNames, contactNumbers));
         phones.close();
     }
 
@@ -49,6 +63,7 @@ public class ContactActivity extends AppCompatActivity {
         label = (TextView) rowView.findViewById(R.id.label);
         phoneCheck = (CheckBox) rowView.findViewById(R.id.number_check);
         label.setText(contactNames[position]);
+        phoneCheck.setChecked(false);
         return rowView;
     }
     @Override

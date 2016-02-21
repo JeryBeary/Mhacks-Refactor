@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--  Single List Item Design -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
+
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/label"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dip"
-    android:textSize="100px"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
+    android:layout_alignParentLeft="true"
+    android:textSize="90px"
     android:fontFamily="sans-serif-light"
     android:textColor="#333333"
     android:textStyle="bold" >
 </TextView>
 
-    <CheckBox android:id="@+id/number_check"
-        android:layout_gravity="right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="35dp"
-        android:text="Heart Rate"
-        android:onClick="onCheckboxClicked"/>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/label2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/label"
+    android:layout_alignParentLeft="true"
+    android:textSize="40px"
+    android:fontFamily="sans-serif-light"
+    android:textColor="#b3b3b3"
+    android:textStyle="bold" >
+</TextView>
 
-</LinearLayout>
+<CheckBox
+    android:id="@+id/number_check"
+    android:layout_alignParentRight="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="35dp"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    />
+
+</RelativeLayout>
 

@@ -15,16 +15,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 public class CustomAdapter extends BaseAdapter {
-    String[] result;
+    String[] result, numbers;
     Context context;
     int[] imageId;
     private static LayoutInflater inflater = null;
 
-    public CustomAdapter(ContactActivity mainActivity, String[] prgmNameList, int[] prgmImages) {
+    public CustomAdapter(ContactActivity mainActivity, String[] prgmNameList, String[] numberList) {
         // TODO Auto-generated constructor stub
         result = prgmNameList;
         context = mainActivity;
-        imageId = prgmImages;
+        numbers = numberList;
         inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -49,6 +49,7 @@ public class CustomAdapter extends BaseAdapter {
 
     public class Holder {
         TextView label;
+        TextView label2;
         CheckBox phoneCheck;
     }
 
@@ -59,15 +60,11 @@ public class CustomAdapter extends BaseAdapter {
         View rowView;
         rowView = inflater.inflate(R.layout.activity_list, null);
         holder.label = (TextView) rowView.findViewById(R.id.label);
+        holder.label2 = (TextView) rowView.findViewById(R.id.label2);
         holder.phoneCheck = (CheckBox) rowView.findViewById(R.id.number_check);
         holder.label.setText(result[position]);
-        rowView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked " + result[position], Toast.LENGTH_LONG).show();
-            }
-        });
+        holder.label2.setText(numbers[position]);
+        holder.phoneCheck.setChecked(false);
         return rowView;
     }
 }
