@@ -1,3 +1,8 @@
+package baitsbait.heart2heart;
+
+import com.github.scribejava.core.builder.api.DefaultApi10a;
+import com.github.scribejava.core.model.Token;
+
 public class FitbitApi extends DefaultApi10a
 {
   private static final String AUTHORIZE_URL = "https://www.fitbit.com/oauth/authorize?token=%s";

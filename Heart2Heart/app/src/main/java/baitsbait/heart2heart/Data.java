@@ -19,8 +19,30 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 import android.content.Intent;
 
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.model.Verifier;
+import com.github.scribejava.core.oauth.OAuthService;
+
 public class Data extends AppCompatActivity {
     //ListView data;
+    OAuthService service = new ServiceBuilder()
+            .provider(FitbitApi.class)
+            .apiKey("ed686ac28956df6e90086e20ee11fa31")
+            .apiSecret("66be2752e4a9905c080b27c84286920e")
+            .build();
+    Token requestToken = service.getRequestToken();
+    String authUrl = service.getAuthorizationUrl(requestToken);
+    Verifier v = new Verifier("verifier you got from the user");
+    Token accessToken = service.getAccessToken(requestToken, v); // the requestToken you had from step 2
+
+    String dataUrl = "https://api.fitbit.com/1/user/[user-id]/activities/heart/date/[date]/[period].json";
+    OAuthRequest request = new OAuthRequest(Verb.GET, dataUrl, service);
+    Response response = request.send();
+
     CheckBox heart, sleep;
     Button button;
     public class MyActivity extends AppCompatActivity {
